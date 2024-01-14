@@ -20,6 +20,17 @@ namespace StarterAssets
 		public float RotationSpeed = 1.0f;
 		[Tooltip("Acceleration and deceleration")]
 		public float SpeedChangeRate = 10.0f;
+		
+		[Space(10)]
+		[Header("Footsteps")]
+		[Tooltip("List of footstep sounds")]
+		public AudioClip[] footstepSounds;
+		[Tooltip("Audio source for playing footstep sounds")]
+		public AudioSource footstepAudioSource;
+		[Tooltip("Cooldown duration between footstep sounds in seconds")]
+		public float footstepCooldown = 0.5f;
+
+		private float footstepTimer = 0f;
 
 		[Space(10)]
 		[Tooltip("The height the player can jump")]
@@ -115,6 +126,7 @@ namespace StarterAssets
 			JumpAndGravity();
 			GroundedCheck();
 			Move();
+			PlayFootstepSounds();
 		}
 
 		private void LateUpdate()
@@ -263,6 +275,23 @@ namespace StarterAssets
 
 			// when selected, draw a gizmo in the position of, and matching radius of, the grounded collider
 			Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
+		}
+		private void PlayFootstepSounds()
+		{
+			// Update the footstep timer
+			if (footstepTimer < footstepCooldown)
+			{
+				footstepTimer += Time.deltaTime;
+			}
+
+			// Check if the player is grounded, moving, and the footstep cooldown has elapsed
+			if (Grounded && _controller
+				    .velocity.magnitude > 0.1f && footstepTimer >= footstepCooldown)
+			{
+				footstepAudioSource.clip = footstepSounds[Random.Range(0, footstepSounds.Length)];
+				footstepAudioSource.Play();
+				footstepTimer = 0f; // Reset the timer after playing a footstep sound
+			}
 		}
 	}
 }
