@@ -407,7 +407,7 @@ GameObject:
   m_Component:
   - component: {fileID: 263187267}
   - component: {fileID: 263187266}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: TeleportToVolume_N
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -620,7 +620,7 @@ GameObject:
   m_Component:
   - component: {fileID: 346196056}
   - component: {fileID: 346196055}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: TeleportToVolume_E
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2072,7 +2072,7 @@ GameObject:
   - component: {fileID: 1024884101}
   - component: {fileID: 1024884100}
   - component: {fileID: 1024884102}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: TeleportFromVolume_N
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2197,7 +2197,7 @@ GameObject:
   - component: {fileID: 1031189073}
   - component: {fileID: 1031189072}
   - component: {fileID: 1031189074}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: TeleportFromVolume_E
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2276,7 +2276,7 @@ GameObject:
   - component: {fileID: 1064614582}
   - component: {fileID: 1064614581}
   - component: {fileID: 1064614583}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: TeleportFromVolume_W
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2721,7 +2721,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1301508757}
   - component: {fileID: 1301508756}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: TeleportToVolume_S
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2967,7 +2967,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1519900135}
   - component: {fileID: 1519900134}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: TeleportToVolume_Up
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3644,7 +3644,7 @@ GameObject:
   - component: {fileID: 1764048933}
   - component: {fileID: 1764048932}
   - component: {fileID: 1764048934}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: TeleportFromVolume_S
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3871,7 +3871,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1887330268}
   - component: {fileID: 1887330267}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: TeleportToVolume_W
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4001,7 +4001,7 @@ GameObject:
   - component: {fileID: 1938414391}
   - component: {fileID: 1938414390}
   - component: {fileID: 1938414392}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: TeleportFromVolume_Down
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4426,7 +4426,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2030248972}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Teleporters
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4465,6 +4465,46 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1704701639}
     m_Modifications:
+    - target: {fileID: 422432334290741284, guid: 7591b78c077ff1240aa26065871a1164,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1258126840008947424, guid: 7591b78c077ff1240aa26065871a1164,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466110304454514566, guid: 7591b78c077ff1240aa26065871a1164,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2405887406715178725, guid: 7591b78c077ff1240aa26065871a1164,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2405887406715178730, guid: 7591b78c077ff1240aa26065871a1164,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d44d1b0d15a92d145bf10f39a50fa959, type: 2}
+    - target: {fileID: 2968073528378955622, guid: 7591b78c077ff1240aa26065871a1164,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3144499721355592173, guid: 7591b78c077ff1240aa26065871a1164,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4392515467195436443, guid: 7591b78c077ff1240aa26065871a1164,
+        type: 3}
+      propertyPath: interactionInfo
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4736621345207432039, guid: 7591b78c077ff1240aa26065871a1164,
         type: 3}
       propertyPath: m_Name
@@ -4530,7 +4570,58 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 5908738926981146957, guid: 7591b78c077ff1240aa26065871a1164,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6450306714413766005, guid: 7591b78c077ff1240aa26065871a1164,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6450306714413766005, guid: 7591b78c077ff1240aa26065871a1164,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6450306714413766005, guid: 7591b78c077ff1240aa26065871a1164,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6450306714413766005, guid: 7591b78c077ff1240aa26065871a1164,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6450306714413766005, guid: 7591b78c077ff1240aa26065871a1164,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6450306714413766005, guid: 7591b78c077ff1240aa26065871a1164,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6978719367015776126, guid: 7591b78c077ff1240aa26065871a1164,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7527345033444249446, guid: 7591b78c077ff1240aa26065871a1164,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7960869655740516130, guid: 7591b78c077ff1240aa26065871a1164,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4392515467195436443, guid: 7591b78c077ff1240aa26065871a1164, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 7591b78c077ff1240aa26065871a1164, type: 3}
 --- !u!1001 &2057855913
 PrefabInstance:
@@ -5037,16 +5128,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8616685848737228371, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
         type: 3}
-      propertyPath: MoveSpeed
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8616685848737228371, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
-        type: 3}
-      propertyPath: SprintSpeed
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8616685848737228371, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
-        type: 3}
       propertyPath: footstepAudioSource
       value: 
       objectReference: {fileID: 135756641613574983}
@@ -5079,6 +5160,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerCapsule
+      objectReference: {fileID: 0}
+    - target: {fileID: 8616685848737228376, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
+        type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: KeyboardMouse
       objectReference: {fileID: 0}
     - target: {fileID: 8997996947095583982, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
         type: 3}
