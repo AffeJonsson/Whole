@@ -12,14 +12,8 @@ public class EventManager : MonoBehaviour
     [Serializable]
     public class SerializableUnityEvent : UnityEvent {}
 
-    [Serializable]
-    public class UnityEventList
-    {
-        public List<SerializableUnityEvent> events = new List<SerializableUnityEvent>();
-    }
-
     [SerializeField]
-    private List<UnityEventList> eventLists = new List<UnityEventList>();
+    private List<SerializableUnityEvent> eventLists = new List<SerializableUnityEvent>();
 
     private void Awake()
     {
@@ -36,10 +30,7 @@ public class EventManager : MonoBehaviour
 
     public void ExecuteCurrentEvent()
     {
-        foreach (SerializableUnityEvent evt in eventLists[CurrentEventIndex].events)
-        {
-            evt.Invoke();
-        }
+        eventLists[CurrentEventIndex].Invoke();
 
         CurrentEventIndex++;
     }
