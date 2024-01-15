@@ -28,7 +28,12 @@ namespace Alf.UnityLocker.Editor.ContextMenus
 				var sceneHierarchyField = sm_sceneHierarchyWindowType.GetField("m_SceneHierarchy", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
 				var sceneHierarchy = sceneHierarchyField.GetValue(sceneHierarchyWindow);
 				var treeViewField = sm_sceneHierarchyType.GetField("m_TreeView", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-				var createMultiSceneHeaderContextClickMethod = sm_sceneHierarchyType.GetMethod("CreateMultiSceneHeaderContextClick", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+				var createMultiSceneHeaderContextClickMethod =
+#if UNITY_2020_1_OR_NEWER
+					sm_sceneHierarchyType.GetMethod("CreateSceneHeaderContextClick", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+#else
+					sm_sceneHierarchyType.GetMethod("CreateMultiSceneHeaderContextClick", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+#endif
 				var createGameObjectContextClickMethod = sm_sceneHierarchyType.GetMethod("CreateGameObjectContextClick", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
 				var isSceneHeaderInHierarchyWindowMethod = sm_sceneHierarchyType.GetMethod("IsSceneHeaderInHierarchyWindow", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static);
 				var treeView = treeViewField.GetValue(sceneHierarchy);
@@ -51,7 +56,9 @@ namespace Alf.UnityLocker.Editor.ContextMenus
 					{
 						var menu = new GenericMenu();
 
-#if UNITY_2018_3_OR_NEWER
+#if UNITY_2020_1_OR_NEWER
+						createMultiSceneHeaderContextClickMethod.Invoke(sceneHierarchy, new object[] { menu, scene });
+#elif UNITY_2018_3_OR_NEWER
 						createMultiSceneHeaderContextClickMethod.Invoke(sceneHierarchy, new object[] { menu, id });
 #else
 						createMultiSceneHeaderContextClickMethod.Invoke(sceneHierarchyWindow, new object[] { menu, id });
