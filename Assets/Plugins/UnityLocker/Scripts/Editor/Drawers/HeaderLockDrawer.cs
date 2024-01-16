@@ -41,7 +41,7 @@ namespace Alf.UnityLocker.Editor.Drawers
 			{
 				using (new EditorGUI.DisabledGroupScope(isLockedByMe || isLockedBySomeoneElse || isLockedNowButUnlockedAtLaterCommit))
 				{
-					if (GUILayout.Button(new GUIContent("Lock "), EditorStyles.miniButton))
+					if (GUILayout.Button(new GUIContent(Constants.LockName), EditorStyles.miniButton))
 					{
 						Locker.TryLockAssets(editor.targets, null, (errorMessage) =>
 						{
@@ -51,20 +51,24 @@ namespace Alf.UnityLocker.Editor.Drawers
 				}
 				using (new EditorGUI.DisabledGroupScope(!isLockedByMe))
 				{
-					if (GUILayout.Button(new GUIContent("Revert Lock"), EditorStyles.miniButton))
+					if (GUILayout.Button(new GUIContent(Constants.RevertName), EditorStyles.miniButton))
 					{
 						Locker.TryRevertAssetLocks(editor.targets, null, (errorMessage) =>
 						{
 							EditorUtility.DisplayDialog("Asset reverting failed", "Asset reverting failed\n" + errorMessage, "OK");
 						});
 					}
-					if (GUILayout.Button(new GUIContent("Finish Lock"), EditorStyles.miniButton))
+					if (GUILayout.Button(new GUIContent(Constants.FinishName), EditorStyles.miniButton))
 					{
 						Locker.TryFinishLockingAssets(editor.targets, null, (errorMessage) =>
 						{
 							EditorUtility.DisplayDialog("Asset finishing failed", "Asset finishing failed\n" + errorMessage, "OK");
 						});
 					}
+				}
+				if (GUILayout.Button(new GUIContent(Constants.HistoryName), EditorStyles.miniButton))
+				{
+					HistoryWindow.Show(editor.target);
 				}
 			}
 
@@ -82,9 +86,7 @@ namespace Alf.UnityLocker.Editor.Drawers
 				}
 				if (!string.IsNullOrEmpty(locker))
 				{
-#if !UNITY_2020_3_OR_NEWER
 					LockDrawer.TryDrawLock(sm_headerRect, editor.target, LockDrawer.DrawType.LargeIcon);
-#endif
 					EditorGUILayout.LabelField("Asset" + (editor.targets.Length > 1 ? "s" : "") + " locked by " + (hasMultipleLockers ? "multiple users" : locker), EditorStyles.boldLabel);
 					if (isLockedNowButUnlockedAtLaterCommit)
 					{

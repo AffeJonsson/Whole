@@ -11,18 +11,22 @@ namespace Alf.UnityLocker.Editor.ContextMenus
 		private static Type sm_treeViewType = null;
 		private static Type sm_sceneHierarchyWindowType = null;
 
-		private static void ContinusTryCreateMenu()
+		private static void ContinousTryCreateMenu()
 		{
 			try
 			{
 				var sceneHierarchyWindow = EditorWindow.GetWindow(sm_sceneHierarchyWindowType);
 				var getSceneByHandleMethod = typeof(UnityEditor.SceneManagement.EditorSceneManager).GetMethod("GetSceneByHandle", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
-				
+
 				var treeViewField = sm_sceneHierarchyWindowType.GetField("m_TreeView", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
 				var createMultiSceneHeaderContextClickMethod = sm_sceneHierarchyWindowType.GetMethod("CreateMultiSceneHeaderContextClick", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
 				var createGameObjectContextClickMethod = sm_sceneHierarchyWindowType.GetMethod("CreateGameObjectContextClick", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
 				var isSceneHeaderInHierarchyWindowMethod = sm_sceneHierarchyWindowType.GetMethod("IsSceneHeaderInHierarchyWindow", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static);
 				var treeView = treeViewField.GetValue(sceneHierarchyWindow);
+				if (treeView == null)
+				{
+					return;
+				}
 				var property = sm_treeViewType.GetProperty("contextClickItemCallback", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
 				var e = (Action<int>)property.GetValue(treeView);
 				e = (id) =>
@@ -53,7 +57,7 @@ namespace Alf.UnityLocker.Editor.ContextMenus
 				Debug.LogError(e);
 				return;
 			}
-			EditorApplication.update -= ContinusTryCreateMenu;
+			EditorApplication.update -= ContinousTryCreateMenu;
 		}
 
 		static SceneHierarchy2017_1ContextMenu()
@@ -74,7 +78,7 @@ namespace Alf.UnityLocker.Editor.ContextMenus
 				}
 			}).ContinueWith((t) =>
 			{
-				EditorApplication.update += ContinusTryCreateMenu;
+				EditorApplication.update += ContinousTryCreateMenu;
 			}, context);
 		}
 	}

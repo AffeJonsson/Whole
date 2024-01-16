@@ -52,6 +52,16 @@ namespace Alf.UnityLocker
 			get { return m_baseUrl + "/unlock-assets-at-commit"; }
 		}
 
+		public string ClearLocksUrl
+		{
+			get { return m_baseUrl + "/clear-locks"; }
+		}
+
+		public string GetAssetHistoryUrl
+		{
+			get { return m_baseUrl + "/get-history"; }
+		}
+
 		public string Username
 		{
 #if UNITY_EDITOR
