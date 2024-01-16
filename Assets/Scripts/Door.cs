@@ -12,22 +12,29 @@ public class Door : Interactable
 
     private float currentT = 0;
 
-    protected override void Start() {
+    protected override void Start()
+    {
         base.Start();
         closeRotation = transform.eulerAngles;
     }
-    
-    protected override void OnInteract() {
-        base.OnInteract();
-        currentT = 0;
+
+    protected override void OnInteract()
+    {
+        if (FindObjectOfType<PlayerHand>()?.CurrentHandItem?.name == "Key")
+        {
+            base.OnInteract();
+            currentT = 0;
+        }
     }
 
-    protected override void FixedUpdate() {
+    protected override void FixedUpdate()
+    {
         base.FixedUpdate();
         if (!isInteracting) return;
         currentT += Time.fixedDeltaTime / openDuration;
         transform.rotation = Quaternion.Euler(Vector3.Slerp(closeRotation, openRotation, currentT));
-        if (currentT >= 1) {
+        if (currentT >= 1)
+        {
             OnInteractionComplete();
             enabled = false;
         }
