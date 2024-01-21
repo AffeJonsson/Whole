@@ -744,7 +744,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 114140958}
   m_LocalRotation: {x: -0, y: 0.3826846, z: -0, w: -0.9238791}
-  m_LocalPosition: {x: 12.24, y: 1, z: -19.89}
+  m_LocalPosition: {x: 5.45, y: 1, z: -17.55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -860,6 +860,11 @@ MonoBehaviour:
   audioSource: {fileID: 114140961}
   audioStinger: {fileID: 8300000, guid: 99f1383f83785d746a3d4f444a43947a, type: 3}
   audioKillLoop: {fileID: 8300000, guid: fbd486e81b24b4c49bc893aa4fdfc359, type: 3}
+  spriteRenderer: {fileID: 528933738}
+  eatingSprites:
+  - {fileID: 21300000, guid: e72a73109c73cc04080eea58087dbd71, type: 3}
+  - {fileID: 21300000, guid: dc344295559d9fd4e8038323166f4926, type: 3}
+  - {fileID: 21300000, guid: 0a940db3842c5bd40bc2ca969c28c061, type: 3}
 --- !u!82 &114140961
 AudioSource:
   m_ObjectHideFlags: 0
@@ -10714,8 +10719,8 @@ Light:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 0.03
   m_Range: 10
-  m_SpotAngle: 49.80325
-  m_InnerSpotAngle: 40.771812
+  m_SpotAngle: 83.14435
+  m_InnerSpotAngle: 63.27706
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -12838,7 +12843,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1977616212}
   serializedVersion: 8
-  lengthInSec: 5
+  lengthInSec: 6000
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0

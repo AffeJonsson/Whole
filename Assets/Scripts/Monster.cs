@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
 using UnityEngine.Events;
@@ -25,7 +26,11 @@ public class Monster : MonoBehaviour
     [SerializeField]
     private AudioClip audioStinger;
     [SerializeField]
-    private AudioClip audioKillLoop;
+    private AudioClip audioKillLoop;    
+    [SerializeField]
+    private SpriteRenderer spriteRenderer;
+    [SerializeField]
+    private List<Sprite> eatingSprites;
     private bool shouldKillPlayer;
     private Camera playerCamera;
     private new Collider collider;
@@ -78,6 +83,7 @@ public class Monster : MonoBehaviour
         yield return new WaitForSeconds(1);
         audioSource.clip = audioKillLoop;
         var target = new Vector3(playerCamera.transform.position.x, transform.position.y, playerCamera.transform.position.z);
+        StartCoroutine(nameof(EatingAnimation));
         while (Vector3.Distance(transform.position, target) > 0.1)
         {
             transform.position = Vector3.MoveTowards(transform.position, target, killSpeed * Time.deltaTime);
@@ -89,4 +95,27 @@ public class Monster : MonoBehaviour
         Application.Quit();
 #endif
     }
+
+    private IEnumerator EatingAnimation()
+    {
+        int spriteIndex = 0;
+        float animationTimer = 0;
+
+        while (spriteIndex < eatingSprites.Count)
+        {
+            spriteRenderer.sprite = eatingSprites[spriteIndex];
+            
+            yield return null;
+            
+            animationTimer += Time.deltaTime;
+            
+            if (animationTimer >= killSpeed)
+            {
+                spriteIndex++;
+                animationTimer = 0;
+            }
+        }
+        
+    }
+
 }
