@@ -9,6 +9,8 @@ public class Door : Interactable
     [SerializeField]
     private Vector3 openRotation;
     private Vector3 closeRotation;
+    [SerializeField] 
+    private AudioSource audioSource;
 
     private float currentT = 0;
 
@@ -20,10 +22,15 @@ public class Door : Interactable
 
     protected override void OnInteract()
     {
-        if (FindObjectOfType<PlayerHand>()?.CurrentHandItem?.name == "Key")
+        PlayerHand key = FindObjectOfType<PlayerHand>();
+        if (key?.CurrentHandItem?.name == "Key")
         {
             base.OnInteract();
+            audioSource.Play();
             currentT = 0;
+            key.enabled = false;
+            EventManager.Instance.eventExecutionFlags[1] = true;
+
         }
     }
 

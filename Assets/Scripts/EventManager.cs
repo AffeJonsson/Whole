@@ -8,6 +8,8 @@ public class EventManager : MonoBehaviour
     public static EventManager Instance { get; private set; }
 
     public int CurrentEventIndex = 0;
+    
+    public List<bool> eventExecutionFlags = new List<bool>();
 
     [Serializable]
     public class SerializableUnityEvent : UnityEvent {}
@@ -26,12 +28,31 @@ public class EventManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
+        
     }
 
     public void ExecuteCurrentEvent()
     {
-        eventLists[CurrentEventIndex].Invoke();
+        // Check if the boolean value at CurrentEventIndex is true
+        if (CurrentEventIndex < eventExecutionFlags.Count && eventExecutionFlags[CurrentEventIndex])
+        {
+            eventLists[CurrentEventIndex].Invoke();
+            CurrentEventIndex++;            
+            Debug.Log("PROGRESSED EVENT, NOW AT: " + CurrentEventIndex);
+        }
 
-        CurrentEventIndex++;
+
+    }
+    
+    public void EnableEventExecution(int index)
+    {
+        if (index >= 0 && index < eventExecutionFlags.Count)
+        {
+            eventExecutionFlags[index] = true;
+        }
+        else
+        {
+            Debug.LogWarning("Index out of range in EnableEventExecution");
+        }
     }
 }

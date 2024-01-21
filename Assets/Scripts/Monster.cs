@@ -20,6 +20,12 @@ public class Monster : MonoBehaviour
     private float rotatePlayerDuration = 1;
     [SerializeField]
     private AnimationCurve rotatePlayerCurve;
+    [SerializeField]
+    private AudioSource audioSource;
+    [SerializeField]
+    private AudioClip audioStinger;
+    [SerializeField]
+    private AudioClip audioKillLoop;
     private bool shouldKillPlayer;
     private Camera playerCamera;
     private new Collider collider;
@@ -38,7 +44,7 @@ public class Monster : MonoBehaviour
         var distance = Vector3.Distance(transform.position, target);
         var planes = GeometryUtility.CalculateFrustumPlanes(playerCamera);
         var bounds = collider.bounds;
-        Debug.Log("Distance:" + distance);
+        //Debug.Log("Distance:" + distance);
         if (distance < ignoreTransformDistance)
         {
             if (GeometryUtility.TestPlanesAABB(planes, bounds))
@@ -48,6 +54,7 @@ public class Monster : MonoBehaviour
         }
         if (distance < transformDistance && distance > ignoreTransformDistance && GeometryUtility.TestPlanesAABB(planes, bounds))
         {
+            audioSource.clip = audioStinger;
             onTransform.Invoke();
             enabled = false;
         }
@@ -59,6 +66,8 @@ public class Monster : MonoBehaviour
         FindObjectOfType<CharacterController>().enabled = false;
         FindObjectOfType<CinemachineBrain>().enabled = false;
         var originalRotation = playerCamera.transform.rotation;
+        audioSource.clip = audioStinger;
+        
         var t = 0.0f;
         while (t < 1)
         {
@@ -67,6 +76,7 @@ public class Monster : MonoBehaviour
             yield return null;
         }
         yield return new WaitForSeconds(1);
+        audioSource.clip = audioKillLoop;
         var target = new Vector3(playerCamera.transform.position.x, transform.position.y, playerCamera.transform.position.z);
         while (Vector3.Distance(transform.position, target) > 0.1)
         {

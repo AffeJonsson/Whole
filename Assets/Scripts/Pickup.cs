@@ -8,11 +8,14 @@ public class Pickup : Interactable
     private float moveDuration = 0.5f;
     [SerializeField]
     private int playerPickupIndex;
+    [SerializeField] 
+    private AudioSource audioSource;
     private float currentT = 0;
     private Vector3 targetPosition;
     private Quaternion targetRotation;
     private Vector3 targetScale;
     private GameObject handObject;
+
 
     protected override void Start()
     {
@@ -22,6 +25,7 @@ public class Pickup : Interactable
     protected override void OnInteract()
     {
         base.OnInteract();
+        audioSource.Play();
         currentT = 0;
         handObject = FindObjectOfType<PlayerHand>().ChangeItem(playerPickupIndex);
         targetPosition = handObject.transform.position;

@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class TriggerVolumeTeleporter : MonoBehaviour
 {
-    public Transform destination;
-    public bool shouldProgressEventCounter = false;// Assign the destination trigger's center in the inspector
+    public Transform destination; // Assign the destination trigger's center in the inspector
+    public bool shouldProgressEventCounter = false;
+
+    [SerializeField]
+    private List<int> progressEventAtIndexes = new List<int>(); // Serialized list of CurrentEventIndex values
 
     private void OnTriggerEnter(Collider other)
     {
@@ -14,9 +17,14 @@ public class TriggerVolumeTeleporter : MonoBehaviour
 
         Vector3 offset = other.transform.position - transform.position; // Calculate the offset from the center of the current trigger
         other.transform.position = destination.position + offset; // Teleport the object to the destination with the same offset
-        if (shouldProgressEventCounter)
+
+        if (shouldProgressEventCounter && EventManager.Instance != null)
         {
-            EventManager.Instance.ExecuteCurrentEvent();
+            // Check if CurrentEventIndex is in the progressEventAtIndexes list
+            if (progressEventAtIndexes.Contains(EventManager.Instance.CurrentEventIndex))
+            {
+                EventManager.Instance.ExecuteCurrentEvent();
+            }
         }
     }
 }
